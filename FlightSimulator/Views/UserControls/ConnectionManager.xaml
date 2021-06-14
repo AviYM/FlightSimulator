@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="FlightSimulator.Views.ConnectionManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d">
+    <Grid>
+        <Button x:Name="ConnectBtn" 
+               Background = "#480093" Foreground="white" FontFamily="Arial bold" FontSize="15">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsConnected, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                            <Setter Property="Content" Value="Connect" />
+                            <Setter Property="Command" Value="{Binding ConnectCommand}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsConnected,UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Content" Value="Disconnect" />
+                            <Setter Property="Command" Value="{Binding DisconnectCommand}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

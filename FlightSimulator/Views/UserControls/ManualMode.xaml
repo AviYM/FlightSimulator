@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="FlightSimulator.Views.ManualMode"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450" Background="White">
+    <Grid Margin="0,0,0,0">
+
+        <local:Joystick x:Name="Joystick"
+                            Aileron="{Binding Aileron, Mode=OneWayToSource}"
+                            Elevator="{Binding Elevator, Mode=OneWayToSource}" Margin="75,40,56,68"></local:Joystick>
+
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="195,5,0,0" TextWrapping="Wrap" Text="  ←aileron→" VerticalAlignment="Top" Width="100" FontSize="15" BorderThickness="0"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="195,420,0,0" Text="  ←rudder→" VerticalAlignment="Top" Width="100" FontSize="15" BorderThickness="0"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="-35,200,0,0" Text="  ←throttle→" VerticalAlignment="Top" Width="100" FontSize="15" RenderTransformOrigin="0.5,0.5" BorderThickness="0">
+            <TextBox.RenderTransform>
+                <RotateTransform Angle="90"/>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="385,200,-25,0" TextWrapping="Wrap" Text="  ←elevator→" VerticalAlignment="Top" Width="100" FontSize="15" RenderTransformOrigin="0.5,0.5" BorderThickness="0">
+            <TextBox.RenderTransform>
+                <RotateTransform Angle="90"/>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Slider x:Name="RudderSlider" Value="{Binding Rudder,Mode = OneWayToSource}" Minimum="-1" Maximum="1" Margin="95,395,65,0" VerticalAlignment="Top"/>
+        <Slider x:Name="ThrottleSlider" Value="{Binding Throttle,Mode = OneWayToSource}" Minimum="-1" Maximum="1" Margin="-100,200,260,0" VerticalAlignment="Top" RenderTransformOrigin="0.39,0.16">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform X="25.465" Y="40.469"/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+        <TextBlock Text="{Binding Throttle ,StringFormat=0.#}" HorizontalAlignment="Left" Margin="40,35,0,0" VerticalAlignment="Top" FontSize="15"/>
+
+        <TextBlock Text="{Binding Rudder,StringFormat=0.#}" HorizontalAlignment="Left" Margin="410,390,0,0" VerticalAlignment="Top" FontSize="15"/>
+
+        <TextBlock Text="{Binding ElementName=Joystick, Path=Aileron, StringFormat=0.0#}" HorizontalAlignment="Left" Margin="380,5,0,0" VerticalAlignment="Top" FontSize="15"/>
+
+        <TextBlock Text="{Binding ElementName=Joystick, Path=Elevator, StringFormat=0.0#}" HorizontalAlignment="Left" Margin="425,40,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <RotateTransform Angle="90"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </Grid>
+</UserControl>
